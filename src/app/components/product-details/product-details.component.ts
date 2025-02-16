@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Product, products } from '../products';
-import { CartService } from '../cart.service';
+import { Product, products } from '../../models/products';
+import { CartService } from '../../services/cart.service';
+import { Provider } from "../../models/providers";
+import { ProvidersService } from "../../services/providers.service";
 
 
 @Component({
@@ -13,9 +15,13 @@ import { CartService } from '../cart.service';
 export class ProductDetailsComponent {
 
   product: Product | undefined;
+
+  provider: Provider | undefined;
+
   constructor (
      private route: ActivatedRoute,
-    private cartService: CartService
+    private cartService: CartService,
+    private providersService: ProvidersService
     ) {}
 
   ngOnInit() {
@@ -23,6 +29,10 @@ export class ProductDetailsComponent {
     const productIdFromRoute = Number(routeParams.get('productId'));
 
     this.product = products.find(product => product.id === productIdFromRoute);
+
+    this.providersService.getProviders().subscribe((providerService) => {
+      this.provider = providerService.find(p => p.id === this.product?.provider);
+      });
   
   }
   addToCart(product : Product) {

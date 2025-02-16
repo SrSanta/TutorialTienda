@@ -1,0 +1,14 @@
+<h3>Provider Details</h3>
+
+@if (provider) {
+    <p>{{provider.id}}</p>
+    <p>{{provider.name}}</p>
+    <p>Product of providers</p>
+    @for (product of products; track product.id) {
+        <a [title]="product.name +' Details'"
+        [routerLink]="['/products', product.id]">
+        {{ product.name }}
+        </a>
+        <br>
+    }
+}

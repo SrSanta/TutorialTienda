@@ -5,4 +5,14 @@
   <h4>{{ product.price | currency }}</h4>
   <p>{{ product.description }}</p>
   <button type="button" (click)="addToCart(product)">Add</button>
+  <br/>
+  <br/>
+  @if(provider){
+  <a
+    [title]="provider.name + ' Details'"
+    [routerLink]="['/providers', provider.id]"
+  >
+    {{ provider.name }}</a
+  >
+  }
 </div>
