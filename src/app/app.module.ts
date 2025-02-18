@@ -13,6 +13,8 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { ShippingComponent } from './components/shipping/shipping.component';
 import { ProvidersListComponent } from './components/providers-list/providers-list.component';
 import { ProvidersDetailsComponent } from './components/providers-details/providers-details.component';
+import {NgForOf} from "@angular/common";
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -24,11 +26,14 @@ import { ProvidersDetailsComponent } from './components/providers-details/provid
         ProductDetailsComponent,
         CartComponent,
         ShippingComponent,
+        
     ],
     bootstrap: [
         AppComponent
     ], imports: [BrowserModule,
         ReactiveFormsModule,
+        NgForOf,
+        FormsModule,
         RouterModule.forRoot([
             { path: '', component: ProductListComponent },
             { path: 'products/:productId', component: ProductDetailsComponent },

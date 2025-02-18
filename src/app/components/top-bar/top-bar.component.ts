@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CartService } from '../../services/cart.service';
 
 @Component({
     selector: 'app-top-bar',
@@ -8,6 +9,15 @@ import { Component } from '@angular/core';
 })
 export class TopBarComponent {
 
+    cantidad = 0;
+
+    constructor(private cart: CartService){}
+
+    ngOnInit() {
+        this.cart.cantItems$.subscribe((cantidad) => {
+            this.cantidad = cantidad;
+    });
+    }
 }
 
 
