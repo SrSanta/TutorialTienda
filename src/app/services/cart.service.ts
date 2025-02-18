@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class CartService {
-items : Product[] = [];
+items : {product: Product, cantidad: number}[] = [];
 
 cant : number = 0;
 private cantItems = new BehaviorSubject<number>(this.cant);
@@ -18,8 +18,13 @@ cantItems$ = this.cantItems.asObservable();
   ) { }
 
   addToCart( product: Product) {
-    this.items.push(product);
-    this.sumCantidad();
+    const existingItem = this.items.find(item => item.product.id === product.id);
+
+    if (existingItem) {
+      existingItem.cantidad++;
+    } else {
+      this.items.push({ product, cantidad: 1 });
+    }
   }
 
   getItems() {
@@ -40,6 +45,6 @@ cantItems$ = this.cantItems.asObservable();
   }
 
   getCosteTotal() {
-    return this.items.reduce((acc, product) => acc + product.price, 0);
+    return this.items.reduce((acc, product) => acc + product.product.price, 0);
   }
 }

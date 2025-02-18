@@ -37,6 +37,7 @@ export class ProductDetailsComponent {
   }
   addToCart(product : Product) {
     this.cartService.addToCart(product);
+    this.cartService.sumCantidad();
     window.alert('Producto añadido al carro');
   }
 }
