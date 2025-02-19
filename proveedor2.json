@@ -1,0 +1,11 @@
+{
+  "proveedores": [
+    {
+      "product_id": "2",
+      "product_name": "Phone Mini",
+      "cost": 599,
+      "details": "A Compact phone whith great performance",
+      "supplier": "2"
+    }
+  ]
+}

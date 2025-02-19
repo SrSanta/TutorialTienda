@@ -2,8 +2,9 @@ import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Provider } from "../../models/providers";
 import { ProvidersService } from "../../services/providers.service";
-import { Product, products } from '../../models/products';
+import { Product } from '../../models/products';
 import { RouterLink } from '@angular/router';
+import { ProductService } from "../../services/product.service";
 
 @Component({
   selector: "app-providers-details",
@@ -13,17 +14,20 @@ import { RouterLink } from '@angular/router';
 })
 export class ProvidersDetailsComponent {
   provider: Provider | undefined;
-  products = [...products];
+  products: Product[] = [];
 
   constructor(
     private providersService: ProvidersService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private productService: ProductService
   ) {}
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     const providerIdFromRoute = Number(routeParams.get("providerId"));
-    console.log(products);
+    this.productService.getProductos().subscribe((products) => {
+      this.products = products;
+    });
 
     this.providersService.getProviders().subscribe((providerService) => {
       this.provider = providerService.find(
@@ -31,7 +35,7 @@ export class ProvidersDetailsComponent {
       );
     });
 
-    this.products = products.filter(product => product.provider === providerIdFromRoute);
+    this.products = this.products.filter(product => product.provider === providerIdFromRoute);
     console.log(this.products);
   }
 }

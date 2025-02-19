@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 
-import { products } from '../../models/products';
+import { Product } from '../../models/products';
+import { ProductService } from '../../services/product.service';
+import { ProductProvider } from '../../models/productsProviders';
+
 
 @Component({
     selector: 'app-product-list',
@@ -9,7 +12,24 @@ import { products } from '../../models/products';
     standalone: false
 })
 export class ProductListComponent {
-  products = [...products];
+  products: Product[] = [];
+  products2: ProductProvider[] = [];
+
+  constructor(private productService: ProductService){}
+
+  ngOnInit(): void {
+    this.productService.getProductos().subscribe((products) => {
+      this.products = products;
+    });
+
+    this.productService.getProveedores().subscribe((products) => {
+      this.products2 = products;
+    });
+
+    if(this.products2.length != 0 && this.products.length != 0){
+      alert("No hay telefonos");
+    }
+  }
 
   share() {
     window.alert('El producto ha sido compartido');

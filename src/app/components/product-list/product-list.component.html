@@ -1,5 +1,6 @@
 <h2>Products</h2>
 
+@if (products.length != 0) {
 <div *ngFor="let product of products">
   <h3>
     <a [title]="product.name +' Details'"
@@ -22,3 +23,26 @@
   (notificacion)="onNotify()"> 
 </app-product-alerts>
 </div>
+}
+@if (products2.length != 0) {
+  <div *ngFor="let product of products2">
+    <h3>
+      <a [title]="product.product_name +' Details'">
+        {{ product.product_name }}
+      </a>
+    </h3>
+    <p *ngIf="product.details">
+      Description: {{product.details}}
+    </p>
+      <p *ngIf="product.cost">
+      price: {{product.cost}}
+    </p>
+  
+    <button type="button" (click)="share()">
+      Share
+    </button>
+  </div>
+  }
+  @else {
+    <div>No hay telefonos</div>
+  }
