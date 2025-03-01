@@ -26,7 +26,7 @@ export class ProductService {
         productosData.forEach(p => {
           products.push({
             id: p.id,
-            productName: p.name,
+            name: p.name,
             price: p.price,
             description: p.description,
             provider: p.provider
@@ -36,7 +36,7 @@ export class ProductService {
         proveedoresData.forEach(p => {
           products.push({
             id: Number(p.product_id),
-            productName: p.product_name,
+            name: p.product_name,
             price: p.cost,
             description: p.details,
             provider: p.supplier
