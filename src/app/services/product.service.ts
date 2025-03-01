@@ -35,11 +35,11 @@ export class ProductService {
 
         proveedoresData.forEach(p => {
           products.push({
-            product_id: p.product_id,
+            id: Number(p.product_id),
             productName: p.product_name,
-            cost: p.cost,
-            details: p.details,
-            supplier: p.supplier
+            price: p.cost,
+            description: p.details,
+            provider: p.supplier
           });
         });
 
