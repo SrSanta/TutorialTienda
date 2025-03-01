@@ -13,22 +13,13 @@ import { ProductProvider } from '../../models/productsProviders';
 })
 export class ProductListComponent {
   products: Product[] = [];
-  products2: ProductProvider[] = [];
 
-  constructor(private productService: ProductService){}
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productService.getProductos().subscribe((products) => {
+    this.productService.getProductos().subscribe(products => {
       this.products = products;
     });
-
-    this.productService.getProveedores().subscribe((products) => {
-      this.products2 = products;
-    });
-
-    if(this.products2.length != 0 && this.products.length != 0){
-      alert("No hay telefonos");
-    }
   }
 
   share() {

@@ -45,6 +45,6 @@ cantItems$ = this.cantItems.asObservable();
   }
 
   getCosteTotal() {
-    return this.items.reduce((acc, product) => acc + product.product.price, 0);
+    return this.items.reduce((acc, product) => acc + (product.product.price ?? 0), 0);
   }
 }

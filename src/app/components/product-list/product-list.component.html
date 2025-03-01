@@ -1,48 +1,11 @@
 <h2>Products</h2>
 
-@if (products.length != 0) {
 <div *ngFor="let product of products">
   <h3>
-    <a [title]="product.name +' Details'"
-    [routerLink]="['/products', product.id]">
-      {{ product.name }}
-    </a>
+    <a [title]="product.productName +' Details'"> {{ product.productName }}</a>
   </h3>
-  <p *ngIf="product.description">
-    Description: {{product.description}}
-  </p>
-    <p *ngIf="product.price">
-    price: {{product.price}}
-  </p>
-
-  <button type="button" (click)="share()">
-    Share
-  </button>
-  <app-product-alerts
-  [product]="product"
-  (notificacion)="onNotify()"> 
-</app-product-alerts>
+  <p>Description: {{ product.description || product.details }}</p>
+  <p>Price: {{ product.price || product.cost }}</p>
+  <button type="button" (click)="share()">Share</button>
+  <app-product-alerts [product]="product" (notificacion)="onNotify()"></app-product-alerts>
 </div>
-}
-@if (products2.length != 0) {
-  <div *ngFor="let product of products2">
-    <h3>
-      <a [title]="product.product_name +' Details'">
-        {{ product.product_name }}
-      </a>
-    </h3>
-    <p *ngIf="product.details">
-      Description: {{product.details}}
-    </p>
-      <p *ngIf="product.cost">
-      price: {{product.cost}}
-    </p>
-  
-    <button type="button" (click)="share()">
-      Share
-    </button>
-  </div>
-  }
-  @else {
-    <div>No hay telefonos</div>
-  }
