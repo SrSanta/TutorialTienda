@@ -55,7 +55,7 @@ export class ProductService {
   getProduct(id: number): Observable<Product | undefined> {
     return this.getProductos().pipe(
       switchMap(products => {
-        const product = products.find(p => p.id === id || p.product_id === id.toString());
+        const product = products.find(p => p.id == id || p.product_id == id.toString());
         return of(product);
       }),
       catchError(error => {
